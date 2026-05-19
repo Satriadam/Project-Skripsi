@@ -191,8 +191,11 @@ with st.sidebar:
 
     # LOGO
     col1, col2 = st.columns(2)
-    col1.image("assets/logo_kampus.png", width=60)
-    col2.image("assets/logo_radar.png", width=70)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    path_logo_kampus = os.path.join(base_dir, "assets", "logo_kampus.png")
+    path_logo_radar = os.path.join(base_dir, "assets", "logo_radar.png")
+    col1.image(path_logo_kampus, width=60)
+    col2.image(path_logo_radar, width=70)
 
     st.markdown("<br>", unsafe_allow_html=True)
 
