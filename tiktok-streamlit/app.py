@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import os
 
 st.set_page_config(layout="wide")
 
@@ -159,8 +160,16 @@ st.markdown("""
 # =========================================
 @st.cache_data
 def load_data():
-    df_konten = pd.read_csv("data/hasil_analisis_konten.csv")
-    df_agregat = pd.read_csv("data/hasil_clustering_agregat_1tahun.csv")
+    # Menemukan direktori tempat file app.py ini berada secara absolut
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Menggabungkan jalur folder data secara aman untuk lingkungan Linux server
+    path_konten = os.path.join(current_dir, "data", "hasil_analisis_konten.csv")
+    path_agregat = os.path.join(current_dir, "data", "hasil_clustering_agregat_1tahun.csv")
+
+    # Membaca data menggunakan jalur absolut dinamis
+    df_konten = pd.read_csv(path_konten)
+    df_agregat = pd.read_csv(path_agregat)
     return df_konten, df_agregat
 
 df_konten, df_agregat = load_data()
