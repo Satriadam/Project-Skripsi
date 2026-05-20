@@ -249,7 +249,7 @@ df_agregat['month'] = df_agregat['date'].dt.month_name()
 
 if menu == "dashboard":
     render_header(
-        "📊 Dashboard Analisis TikTok Radar Sukabumi",
+        "Dashboard Analisis TikTok Radar Sukabumi",
         "Ringkasan performa konten dan insight utama"
     )
 
@@ -330,7 +330,7 @@ if menu == "dashboard":
 # =========================================
 elif menu == "agregat":
     render_header(
-        "📈 Data Agregat 1 Tahun",
+        "Data Agregat 1 Tahun",
         "Analisis tren performa berdasarkan waktu"
     )
 
@@ -388,7 +388,7 @@ elif menu == "agregat":
 # =========================================
 elif menu == "konten":
     render_header(
-        "🎯 Analisis Per Konten",
+        "Analisis Per Konten",
         "Evaluasi performa berdasarkan kategori dan jenis konten"
     )
 
@@ -461,7 +461,7 @@ elif menu == "konten":
 elif menu == "strategi":
 
     render_header(
-        "🚀 Strategi & Rekomendasi",
+        "Strategi & Rekomendasi",
         "Insight berbasis data untuk optimasi konten"
     )
 
