@@ -11,154 +11,139 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 
-/* ===== SIDEBAR ===== */
+/* ===== TEMPLATE SIDEBAR UTAMA ===== */
 [data-testid="stSidebar"] {
     background-color: #6e1d3a;
     transition: all 0.3s ease;
 }
 
-/* COLLAPSE CONTROL */
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: 1rem !important;
+}
+
 [data-testid="collapsedControl"] {
     color: white;
 }
 
-/* BUTTON */
+[data-testid="stSidebar"] .stColumns {
+    gap: 0px !important; /* Menghilangkan jarak bawaan antar kolom logo */
+}
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    padding: 15px 12px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 12px;
+    margin-top: -5px; /* Menaikkan posisi kotak profil agar mendekati logo */
+    margin-bottom: 35px; /* MENAMBAH JARAK SPACE ANTARA KOTAK NAMA DAN NAVIGASI */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.profile-avatar {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    margin-right: 12px;
+}
+
+.profile-text-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-name {
+    color: white !important;
+    font-size: 15px !important;
+    font-weight: 700 !important;
+    line-height: 1.2 !important;
+}
+
+.profile-major {
+    color: rgba(255, 255, 255, 0.7) !important;
+    font-size: 12px !important;
+    font-weight: 500 !important;
+    margin-top: 3px !important;
+}
+
 .stButton>button {
     width: 100%;
-    text-align: left;
-    padding: 14px 18px;
-    font-size: 17px;
-    font-weight: 600;
-    color: white;
-    background-color: transparent;
-    border: none;
-    border-radius: 0px;
-    transition: all 0.25s ease;
+    padding: 16px 20px !important; /* Mempertebal ukuran tombol */
+    font-size: 18px !important; /* MEMPERBESAR UKURAN FONT NAVIGASI */
+    font-weight: 600 !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 8px !important;
+    margin-bottom: 10px !important;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
 }
 
-/* HOVER */
+/* HOVER EFFECT */
 .stButton>button:hover {
-    background-color: rgba(255,255,255,0.12);
-    transform: translateX(5px);
+    background-color: rgba(255, 255, 255, 0.12) !important;
+    color: #ffffff !important;
+    transform: scale(1.02) !important; /* Efek membesar sedikit secara proporsional saat di-hover */
 }
 
-/* ACTIVE STYLE (FULL WIDTH BAR) */
-.active button {
-    background-color: white !important;
+.stButton>button:disabled, .stButton>button[disabled] {
+    background-color: #ffffff !important;
     color: #6e1d3a !important;
-    border-left: 5px solid #ff4b4b;
+    border-left: none !important; /* Menghilangkan border kiri agar simetris saat rata tengah */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+    cursor: default !important;
+    transform: none !important;
+    opacity: 1 !important;
 }
 
-/* DIVIDER */
-.divider {
-    height: 1px;
-    background-color: rgba(255,255,255,0.3);
-    margin: 6px 0;
-}
-
-/* TITLE */
-.big-title {
-    font-size:42px;
-    font-weight:800;
-    color:#800000;
-}
-
-.section {
-    font-size:22px;
-    font-weight:700;
-    margin-top:20px;
-    color:#800000;
-}
-
-/* KPI CARD */
 .kpi-card {
-    background-color: var(--background-color, white);
-    color: var(--text-color, #31333F);
+    background-color: var(--background-color, #ffffff) !important;
     padding: 20px;
     border-radius: 12px;
     border-left: 5px solid #800000;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
-
-/* BACKGROUND UTAMA */
-.main {
-    background-color: #f4f6f9;
-}
-
-/* SECTION WRAPPER (PEMBUNGKUS BESAR) */
-.section-box {
-    background-color: #eef1f5;
-    padding: 25px;
-    border-radius: 16px;
-    margin-bottom: 25px;
-}
-
-/* CARD (ISI) */
-.card {
-    background-color: var(--background-color, white);
-    color: var(--text-color, #31333F);
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     margin-bottom: 15px;
 }
 
-/* TITLE */
-.card-title {
-    font-size:18px;
-    font-weight:600;
-    margin-bottom:10px;
-    color:#800000;
-}
-
-            /* CONTAINER BERGARIS (OUTLINED CARD) */
+/* CONTAINER BERGARIS ADAPTIF 100% */
 .outline-box {
     border: 1px solid rgba(128, 128, 128, 0.2);
     border-radius: 14px;
     padding: 18px;
     margin-bottom: 20px;
-    background-color: var(--background-color, white);
-    color: var(--text-color, #31333F);
-}
+    background-color: var(--background-color, #ffffff) !important;
 }
 
-/* JUDUL DALAM BOX */
-.box-title {
-    font-size: 16px;
-    font-weight: 600;
-    color: #800000;
-    margin-bottom: 10px;
+/* SINKRONISASI MUTLAK WARNA TEKS ANAK TERMASUK DAFTAR POIN (LI) */
+.kpi-card, .kpi-card *,
+.outline-box, .outline-box * {
+    color: var(--text-color, #31333F) !important;
 }
 
-/* SPACING GLOBAL */
-.block-container {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
+/* EFISIENSI TRANSISI PERUBAHAN TEMA */
+.kpi-card, .outline-box {
+    transition: background-color 0.25s ease, color 0.25s ease !important;
 }
 
-/* HEADER PROFESSIONAL */
 .header-box {
-    background: linear-gradient(#6e1d3a,#6e1d3a);
+    background: linear-gradient(135deg, #6e1d3a, #800000);
     padding: 25px 30px;
     border-radius: 16px;
     color: white;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
     margin-bottom: 25px;
 }
 
-.header-title {
-    font-size: 28px;
-    font-weight: 700;
-}
-
-.header-sub {
-    font-size: 14px;
-    opacity: 0.9;
-}
-
-.outline-box b, .outline-box span, .kpi-card b, .kpi-card span {
-    color: var(--text-color, #31333F) !important;
-}
+.header-title { font-size: 28px; font-weight: 700; }
+.header-sub { font-size: 14px; opacity: 0.9; }
+.section { font-size: 22px; font-weight: 700; margin-top: 20px; color: #800000; }
 
 </style>
 """, unsafe_allow_html=True)
