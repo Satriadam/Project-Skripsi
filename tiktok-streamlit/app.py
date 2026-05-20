@@ -72,11 +72,12 @@ st.markdown("""
 
 /* KPI CARD */
 .kpi-card {
-    background: white;
+    background-color: var(--background-color, white);
+    color: var(--text-color, #31333F);
     padding: 20px;
     border-radius: 12px;
     border-left: 5px solid #800000;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 }
 
 /* BACKGROUND UTAMA */
@@ -94,7 +95,8 @@ st.markdown("""
 
 /* CARD (ISI) */
 .card {
-    background: white;
+    background-color: var(--background-color, white);
+    color: var(--text-color, #31333F);
     padding: 20px;
     border-radius: 14px;
     box-shadow: 0 6px 14px rgba(0,0,0,0.08);
@@ -111,11 +113,13 @@ st.markdown("""
 
             /* CONTAINER BERGARIS (OUTLINED CARD) */
 .outline-box {
-    border: 1px solid #e0e0e0;
+    border: 1px solid rgba(128, 128, 128, 0.2);
     border-radius: 14px;
     padding: 18px;
     margin-bottom: 20px;
-    background-color: white;
+    background-color: var(--background-color, white);
+    color: var(--text-color, #31333F);
+}
 }
 
 /* JUDUL DALAM BOX */
@@ -150,6 +154,10 @@ st.markdown("""
 .header-sub {
     font-size: 14px;
     opacity: 0.9;
+}
+
+.outline-box b, .outline-box span, .kpi-card b, .kpi-card span {
+    color: var(--text-color, #31333F) !important;
 }
 
 </style>
@@ -250,36 +258,32 @@ if menu == "dashboard":
     col1, col2, col3, col4 = st.columns(4)
 
     col1.markdown(f"""
-    <div style='background:white;padding:20px;border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);'>
-    <b>Total Views</b><br>
-    <span style='font-size:22px'>{df_agregat["video_views"].sum():,.0f}</span>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="kpi-card">
+    <b style="color: var(--text-color);">Total Views</b><br>
+    <span style="font-size:22px; font-weight:700;">{df_agregat["video_views"].sum():,.0f}</span>
+</div>
+""", unsafe_allow_html=True)
 
     col2.markdown(f"""
-    <div style='background:white;padding:20px;border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);'>
-    <b>Avg Engagement</b><br>
-    <span style='font-size:22px'>{df_agregat["engagement_rate"].mean():.2f}%</span>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="kpi-card">
+    <b style="color: var(--text-color);">Avg Engagement</b><br>
+    <span style="font-size:22px; font-weight:700;">{df_agregat["engagement_rate"].mean():.2f}%</span>
+</div>
+""", unsafe_allow_html=True)
 
     col3.markdown(f"""
-    <div style='background:white;padding:20px;border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);'>
-    <b>Total Konten</b><br>
-    <span style='font-size:22px'>{len(df_konten)}</span>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="kpi-card">
+    <b style="color: var(--text-color);">Total Konten</b><br>
+    <span style="font-size:22px; font-weight:700;">{len(df_konten)}</span>
+</div>
+""", unsafe_allow_html=True)
 
     col4.markdown(f"""
-    <div style='background:white;padding:20px;border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);'>
-    <b>Best Engagement</b><br>
-    <span style='font-size:22px'>{df_konten["engagement_rate"].max():.2f}%</span>
-    </div>
-    """, unsafe_allow_html=True)
+<div class="kpi-card">
+    <b style="color: var(--text-color);">Best Engagement</b><br>
+    <span style="font-size:22px; font-weight:700;">{df_konten["engagement_rate"].max():.2f}%</span>
+</div>
+""", unsafe_allow_html=True)
 
     # ================= ROW 1 =================
     col1, col2 = st.columns(2)
